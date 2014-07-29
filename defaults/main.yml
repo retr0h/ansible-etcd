@@ -1,0 +1,18 @@
+---
+etcd_version: v0.4.5
+etcd_platform: linux
+etcd_arch: amd64
+etcd_path_name: "etcd-{{ etcd_version }}-{{ etcd_platform }}-{{ etcd_arch }}"
+etcd_download_url: "https://github.com/coreos/etcd/releases/download/{{ etcd_version }}/{{ etcd_path_name }}.tar.gz"
+etcd_download_dir: /usr/local/src
+etcd_dir: /usr/local/sbin
+etcd_data_dir: /var/cache/etcd/state
+etcd_cmd: "{{ etcd_dir }}/etcd"
+
+etcd_interface: lo
+etcd_client_port: 4001
+etcd_peer_port: 7001
+etcd_addr: "{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_client_port }}"
+etcd_peer_addr: "{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
+etcd_cluster: ~
+etcd_peers_group: etcd-peers

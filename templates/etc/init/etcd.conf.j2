@@ -1,0 +1,29 @@
+description "etcd service registry"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+{% if etcd_cluster -%}
+{% macro etcd_peers() -%}
+{% for host in groups[etcd_peers_group] -%}
+   {% if loop.last -%}
+{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}
+   {%- else -%}
+{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }},
+   {%- endif -%}
+{% endfor -%}
+{% endmacro -%}
+{%- endif -%}
+
+script
+  {{ etcd_cmd }} \
+{% if etcd_cluster %}
+    -peers {{ etcd_peers() }} \
+{% endif %}
+    -peer-addr {{ etcd_peer_addr }} \
+    -addr {{ etcd_addr }} \
+    -data-dir {{ etcd_data_dir }} \
+    -name {{ inventory_hostname }}
+end script

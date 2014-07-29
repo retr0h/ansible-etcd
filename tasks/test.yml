@@ -1,0 +1,11 @@
+---
+- shell: test -f /usr/local/sbin/{{ item }}
+  register: test_result
+  with_items:
+    - etcd
+    - etcdctl
+- name: ensure etcd and etcdctl were copied
+  assert:
+    that:
+      - "{{ item.rc }} == 0"
+  with_items: test_result.results

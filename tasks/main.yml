@@ -1,0 +1,19 @@
+---
+- get_url: url={{ etcd_download_url }} dest={{ etcd_download_dir }}/etcd.zip
+
+- unarchive: >
+    copy=no
+    src={{ etcd_download_dir }}/etcd.zip
+    dest={{ etcd_download_dir }}
+
+# TODO(retr0h): Sucks the `copy` module doesn't do this.
+#               We get idempotency from `rsync(1)`.
+- shell: rsync -auv {{ etcd_download_dir }}/{{ etcd_path_name }}/{{ item }} {{ etcd_dir }}
+  with_items:
+    - etcd
+    - etcdctl
+
+- name: etcd upstart service
+  template: src=etc/init/etcd.conf.j2 dest=/etc/init/etcd.conf
+  notify:
+    - restart etcd

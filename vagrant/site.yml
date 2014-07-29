@@ -1,0 +1,22 @@
+---
+- hosts: etcd-seed
+  pre_tasks:
+    - apt: update_cache=yes cache_valid_time=3600
+  roles:
+    - etcd
+  tasks:
+    - include: roles/etcd/tasks/test.yml
+
+- hosts: etcd
+  pre_tasks:
+    - apt: update_cache=yes cache_valid_time=3600
+  roles:
+    - {role: etcd, etcd_cluster: True }
+
+- hosts: all
+  pre_tasks:
+    - apt: pkg=curl
+  tasks:
+    - include: roles/etcd/tasks/test_cluster.yml
+  post_tasks:
+    - apt: pkg=curl state=absent

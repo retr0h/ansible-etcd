@@ -1,0 +1,18 @@
+---
+language: python
+python: "2.7"
+before_install:
+  - sudo apt-get update -qq
+install:
+  # Install Ansible.
+  - pip install ansible==1.6.0
+
+  # Create an inventory file for testing.
+  - "printf 'logrotate ansible_ssh_host=localhost' > inventory"
+script:
+  # Check the role/playbook's syntax.
+  - "ansible-playbook -i inventory vagrant/site.yml --syntax-check"
+
+  # NOTE(retr0h): Disabled since travis doesn't handle multi-node.
+  # Run the role/playbook with ansible-playbook.
+  # - "ansible-playbook -vvvv -i inventory vagrant/site.yml --connection=local --sudo"
