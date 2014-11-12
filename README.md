@@ -6,7 +6,8 @@ A role which installs and manages etcd.
 Role ready status
 -----------------
 
-[![Build Status](https://travis-ci.org/retr0h/ansible-etcd.png?branch=master)](https://travis-ci.org/retr0h/ansible-etcd)
+[![Build Status](http://img.shields.io/travis/retr0h/ansible-etcd.svg?style=flat-square)](https://travis-ci.org/retr0h/ansible-etcd)
+[![Galaxy](http://img.shields.io/badge/galaxy-ansible--etcd-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1206)
 
 Requirements
 ------------
@@ -55,7 +56,7 @@ Example Playbook
 
     - hosts: etcd-remaining-nodes
       roles:
-        - {role: retr0h.etcd, etcd_cluster: True }
+        - { role: retr0h.etcd, etcd_cluster: True }
 
 License
 -------
