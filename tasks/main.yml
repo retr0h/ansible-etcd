@@ -10,7 +10,7 @@
 # TODO(retr0h): Sucks the `copy` module doesn't do this.
 #               We get idempotency from `rsync(1)`.
 - name: copy binaries from archive into etcd dir
-  shell: rsync -auv {{ etcd_download_dir }}/{{ etcd_path_name }}/{{ item }} {{ etcd_dir }}
+  shell: rsync -auv {{ etcd_download_dir }}/{{ etcd_release }}/{{ item }} {{ etcd_dir }}
   with_items:
     - etcd
     - etcdctl
