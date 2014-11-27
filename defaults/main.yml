@@ -2,8 +2,8 @@
 etcd_version: v0.4.5
 etcd_platform: linux
 etcd_arch: amd64
-etcd_path_name: "etcd-{{ etcd_version }}-{{ etcd_platform }}-{{ etcd_arch }}"
-etcd_download_url: "https://github.com/coreos/etcd/releases/download/{{ etcd_version }}/{{ etcd_path_name }}.tar.gz"
+etcd_release: "etcd-{{ etcd_version }}-{{ etcd_platform }}-{{ etcd_arch }}"
+etcd_download_url: "https://github.com/coreos/etcd/releases/download/{{ etcd_version }}/{{ etcd_release }}.tar.gz"
 etcd_download_dir: /usr/local/src
 etcd_dir: /usr/local/sbin
 etcd_data_dir: /var/cache/etcd/state

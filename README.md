@@ -20,11 +20,11 @@ Role Variables
 * `etcd_version` - Version of etcd to install. (default: v0.4.5)
 * `etcd_platform` - Platform of etcd to install. (default: linux)
 * `etcd_arch` - Architecture of etcd to install. (default: amd64)
-* `etcd_path_name` - Name of etcd file used by unarchive and download.
-                     Composed of `etcd_version`, `etcd_platform`, and
-                     `etcd_arch`.
+* `etcd_release` - Name of etcd file used by unarchive and download.
+                   Composed of `etcd_version`, `etcd_platform`, and
+                   `etcd_arch`.
 * `etcd_download_url` - URL pointing to the etcd archive.  Composed of
-                        `etcd_version` and `etcd_path_name`.
+                        `etcd_version` and `etcd_release`.
 * `etcd_download_dir` - Directory to download and unarchive into. 
                         (default: /usr/local/src)
 * `etcd_dir` - Directory hosting the etcd binaries. (default: /usr/local/sbin)
