@@ -1,5 +1,5 @@
 ---
-etcd_version: v0.4.5
+etcd_version: v2.0.9
 etcd_platform: linux
 etcd_arch: amd64
 etcd_release: "etcd-{{ etcd_version }}-{{ etcd_platform }}-{{ etcd_arch }}"
@@ -10,9 +10,15 @@ etcd_data_dir: /var/cache/etcd/state
 etcd_cmd: "{{ etcd_dir }}/etcd"
 
 etcd_interface: lo
-etcd_client_port: 4001
-etcd_peer_port: 7001
-etcd_addr: "{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_client_port }}"
-etcd_peer_addr: "{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
-etcd_cluster: ~
-etcd_peers_group: etcd-peers
+etcd_client_port: 2379
+etcd_peer_port: 2380
+etcd_peers_group: etcd
+etcd_url_scheme: http
+
+etcd_initial_cluster_state: new
+etcd_initial_cluster_token: etcd-cluster-1
+
+etcd_initial_advertise_peer_urls: "{{ etcd_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
+etcd_listen_peer_urls:  "{{ etcd_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
+etcd_advertise_client_urls: "{{ etcd_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_client_port }}"
+etcd_listen_client_urls: "{{ etcd_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_client_port }}"

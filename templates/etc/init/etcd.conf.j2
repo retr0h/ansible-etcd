@@ -5,25 +5,25 @@ stop on runlevel [!2345]
 
 respawn
 
-{% if etcd_cluster -%}
-{% macro etcd_peers() -%}
+{% macro initial_cluster() -%}
 {% for host in groups[etcd_peers_group] -%}
    {% if loop.last -%}
-{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}
+{{ host }}={{ etcd_url_scheme }}://{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}
    {%- else -%}
-{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }},
+{{ host }}={{ etcd_url_scheme }}://{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }},
    {%- endif -%}
 {% endfor -%}
 {% endmacro -%}
-{%- endif -%}
 
 script
   {{ etcd_cmd }} \
-{% if etcd_cluster %}
-    -peers {{ etcd_peers() }} \
-{% endif %}
-    -peer-addr {{ etcd_peer_addr }} \
-    -addr {{ etcd_addr }} \
+    -initial-cluster-token {{ etcd_initial_cluster_token }} \
+    -initial-cluster {{ initial_cluster() }} \
+    -initial-cluster-state {{ etcd_initial_cluster_state }} \
+    -initial-advertise-peer-urls {{ etcd_initial_advertise_peer_urls }} \
+    -advertise-client-urls {{ etcd_advertise_client_urls }} \
+    -listen-client-urls {{ etcd_listen_client_urls }} \
+    -listen-peer-urls {{ etcd_listen_peer_urls }} \
     -data-dir {{ etcd_data_dir }} \
     -name {{ inventory_hostname }}
 end script
