@@ -2,16 +2,15 @@
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'hashicorp/precise64'
+  # https://github.com/mitchellh/vagrant/issues/5205
+  config.ssh.insert_key = false
   config.vm.provision 'ansible' do |ansible|
     ansible.playbook = 'vagrant/site.yml'
     ansible.limit = 'all'
     ansible.sudo = true
     ansible.host_key_checking = false
-    # ansible.verbose = "vvv"
     ansible.groups = {
-      'etcd-seed' => ['etcd-1'],
-      'etcd' => ['etcd-2', 'etcd-3'],
-      'etcd-peers:children' => ['etcd-seed', 'etcd']
+      'etcd' => ['etcd-1', 'etcd-2', 'etcd-3']
     }
     ansible.extra_vars = {
       etcd_interface: 'eth1'

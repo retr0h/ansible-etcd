@@ -1,7 +1,0 @@
----
-- shell: curl -qs "http://{{ hostvars[inventory_hostname]['ansible_eth1']['ipv4']['address'] }}:4001/v2/machines" | grep -o 4001 | wc -l
-  register: curl_result
-- name: ensure cluster was created
-  assert:
-    that:
-      - 'curl_result.stdout == "3"'

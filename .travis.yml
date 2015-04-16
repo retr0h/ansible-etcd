@@ -8,7 +8,7 @@ install:
   - pip install ansible==1.6.0
 
   # Create an inventory file for testing.
-  - "printf 'logrotate ansible_ssh_host=localhost' > inventory"
+  - "printf 'etcd ansible_ssh_host=localhost' > inventory"
 script:
   # Check the role/playbook's syntax.
   - "ansible-playbook -i inventory vagrant/site.yml --syntax-check"
