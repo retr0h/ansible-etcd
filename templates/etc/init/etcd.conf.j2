@@ -8,9 +8,9 @@ respawn
 {% macro initial_cluster() -%}
 {% for host in groups[etcd_peers_group] -%}
    {% if loop.last -%}
-{{ host }}={{ etcd_url_scheme }}://{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}
+{{ host }}={{ etcd_peer_url_scheme }}://{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}
    {%- else -%}
-{{ host }}={{ etcd_url_scheme }}://{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }},
+{{ host }}={{ etcd_peer_url_scheme }}://{{ hostvars[host]['ansible_' + etcd_interface]['ipv4']['address'] }}:{{ etcd_peer_port }},
    {%- endif -%}
 {% endfor -%}
 {% endmacro -%}
@@ -24,6 +24,22 @@ script
     -advertise-client-urls {{ etcd_advertise_client_urls }} \
     -listen-client-urls {{ etcd_listen_client_urls }} \
     -listen-peer-urls {{ etcd_listen_peer_urls }} \
+    {% if etcd_client_url_scheme == "https" -%}
+    --cert-file {{ etcd_client_cert_file }} \
+    --key-file {{ etcd_client_key_file }} \
+    {% if etcd_client_cert_auth -%}
+    --client-cert-auth \
+    --trusted-ca-file {{ etcd_client_trusted_ca_file }} \
+    {% endif -%}
+    {% endif -%}
+    {% if etcd_peer_url_scheme == "https" -%}
+    --peer-cert-file {{ etcd_peer_cert_file }} \
+    --peer-key-file {{ etcd_peer_key_file }} \
+    {% if etcd_peer_client_cert_auth -%}
+    --peer-client-cert-auth \
+    --peer-trusted-ca-file {{ etcd_peer_trusted_ca_file }} \
+    {% endif -%}
+    {% endif -%}
     -data-dir {{ etcd_data_dir }} \
     -name {{ inventory_hostname }}
 end script
