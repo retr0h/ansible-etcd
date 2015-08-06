@@ -1,10 +1,10 @@
 ---
 - name: download etcd
-  get_url: url={{ etcd_download_url }} dest={{ etcd_download_dir }}/etcd.zip
+  get_url: url={{ etcd_download_url }} dest={{ etcd_download_dir }}/{{ etcd_download_filename }}
 
 - name: unarchive etcd
   unarchive: copy=no
-             src={{ etcd_download_dir }}/etcd.zip
+             src={{ etcd_download_dir }}/{{ etcd_download_filename }}
              dest={{ etcd_download_dir }}
 
 # TODO(retr0h): Sucks the `copy` module doesn't do this.
