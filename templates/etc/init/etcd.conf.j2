@@ -5,7 +5,7 @@ stop on runlevel [!2345]
 
 respawn
 
-{% if etcd_discovery == none %}
+{% if etcd_discovery == none and etcd_discovery_srv == none -%}
 {% macro initial_cluster() -%}
 {% for host in groups[etcd_peers_group] -%}
    {% if loop.last -%}
@@ -21,6 +21,8 @@ script
   {{ etcd_cmd }} \
     {% if etcd_discovery != none -%}
     -discovery {{ etcd_discovery }} \
+    {% elif etcd_discovery_srv != none -%}
+    -discovery-srv {{ etcd_discovery_srv }} \
     {% else -%}
     -initial-cluster-token {{ etcd_initial_cluster_token }} \
     -initial-cluster {{ initial_cluster() }} \
