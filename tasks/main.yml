@@ -6,6 +6,7 @@
   unarchive: copy=no
              src={{ etcd_download_dir }}/{{ etcd_download_filename }}
              dest={{ etcd_download_dir }}
+             creates="{{ etcd_download_dir }}/{{ etcd_release }}/etcd"
 
 # TODO(retr0h): Sucks the `copy` module doesn't do this.
 #               We get idempotency from `rsync(1)`.
