@@ -3,9 +3,8 @@
   pre_tasks:
     - apt: update_cache=yes cache_valid_time=3600
   roles:
-    - etcd
-
-- hosts: etcd
+    - role: ansible-etcd
+      etcd_interface: eth1
   tasks:
-    - apt: pkg=curl
-    - include: roles/etcd/tasks/test.yml
+    - apt: name=curl
+    - gem: name=facter

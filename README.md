@@ -6,7 +6,6 @@ A role which installs and manages a clustered etcd (v2.0.9).
 Role ready status
 -----------------
 
-[![Build Status](http://img.shields.io/travis/retr0h/ansible-etcd.svg?style=flat-square)](https://travis-ci.org/retr0h/ansible-etcd)
 [![Galaxy](http://img.shields.io/badge/galaxy-ansible--etcd-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1206)
 
 Requirements
@@ -34,8 +33,10 @@ Example Playbook
 Testing
 -------
 
-    $ vagrant up --no-provision
-    $ vagrant provision
+Tests are performed by [Molecule](http://molecule.readthedocs.org/en/latest/).
+
+    $ pip install -r requirements.txt
+    $ molecule test
 
 License
 -------

@@ -33,10 +33,10 @@ etcd_client_key_file: ~
 etcd_client_cert_auth: false
 etcd_client_trusted_ca_file: ~
 
-etcd_peer_cert_file: ~ 
+etcd_peer_cert_file: ~
 etcd_peer_key_file: ~
 etcd_peer_client_cert_auth: false
 etcd_peer_trusted_ca_file: ~
 
-etcd_discovery: ~  
+etcd_discovery: ~
 etcd_discovery_srv: ~

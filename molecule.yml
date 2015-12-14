@@ -1,0 +1,35 @@
+---
+vagrant:
+  raw_config_args:
+    - "ssh.insert_key = false"
+
+  platforms:
+    - name: trusty64
+      box: ubuntu/trusty64
+
+  providers:
+    - name: virtualbox
+      type: virtualbox
+
+  instances:
+    - name: etcd-01
+      ansible_groups:
+        - etcd
+      interfaces:
+        - network_name: private_network
+          type: dhcp
+          auto_config: true
+    - name: etcd-02
+      ansible_groups:
+        - etcd
+      interfaces:
+        - network_name: private_network
+          type: dhcp
+          auto_config: true
+    - name: etcd-03
+      ansible_groups:
+        - etcd
+      interfaces:
+        - network_name: private_network
+          type: dhcp
+          auto_config: true
