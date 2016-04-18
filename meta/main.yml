@@ -13,6 +13,9 @@ galaxy_info:
     - raring
     - saucy
     - trusty
+  - name: EL
+    versions:
+    - all
   categories:
   - system
 dependencies: []
