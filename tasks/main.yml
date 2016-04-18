@@ -23,7 +23,7 @@
     - restart etcd
 
 - name: etcd systemd service
-  template: src=etc/systemd/system/etcd.j2 dest=/etc/systemd/system/etcd.service mode=0755
+  template: src=etc/systemd/system/etcd.j2 dest=/etc/systemd/system/etcd.service mode=0644
   when: ansible_os_family == "RedHat"
   notify:
     - restart etcd

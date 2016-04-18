@@ -16,8 +16,7 @@ After=network.target
 
 
 [Service]
-Type=simple
-BusName=org.freedesktop.NetworkManager
+Type=notify
 User={{ etcd_user }}
 
 
