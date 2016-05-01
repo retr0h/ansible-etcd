@@ -1,6 +1,7 @@
 ---
 - name: download etcd
   get_url: url={{ etcd_download_url }} dest={{ etcd_download_dir }}/{{ etcd_download_filename }}
+           sha256sum={{ etcd_checksum }}
 
 - name: unarchive etcd
   unarchive: copy=no

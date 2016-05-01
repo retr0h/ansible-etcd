@@ -1,7 +1,7 @@
 etcd
 ====
 
-A role which installs and manages a clustered etcd (v2.0.9).
+A role which installs and manages a clustered etcd.
 
 Role ready status
 -----------------
@@ -11,7 +11,7 @@ Role ready status
 Requirements
 ------------
 
-None
+Ansible 1.9 or 2.0
 
 Role Variables
 --------------
