@@ -35,7 +35,8 @@ Testing
 
 Tests are performed by [Molecule](http://molecule.readthedocs.org/en/latest/).
 
-    $ pip install -r requirements.txt
+    $ make
+    $ source venv/bin/activate
     $ molecule test
 
 License

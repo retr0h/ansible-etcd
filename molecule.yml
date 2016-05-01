@@ -1,4 +1,11 @@
 ---
+molecule:
+  ignore_paths:
+    - .git
+    - .vagrant
+    - .molecule
+    - venv
+
 vagrant:
   raw_config_args:
     - "ssh.insert_key = false"
