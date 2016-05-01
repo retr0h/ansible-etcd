@@ -1,5 +1,6 @@
 ---
-etcd_version: v2.1.1
+etcd_version: v2.3.3
+etcd_checksum: cfd19ac19972528f28f83443175601f732e0b04d5b58a4074cbb4f5a7cf32031.
 etcd_platform: linux
 etcd_arch: amd64
 etcd_release: "etcd-{{ etcd_version }}-{{ etcd_platform }}-{{ etcd_arch }}"
