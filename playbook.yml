@@ -2,9 +2,9 @@
 - hosts: etcd
   pre_tasks:
     - apt: update_cache=yes cache_valid_time=3600
+      when: ansible_os_family == "Debian"
   roles:
     - role: ansible-etcd
       etcd_interface: eth1
   tasks:
     - apt: name=curl
-    - gem: name=facter
