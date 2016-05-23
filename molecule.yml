@@ -7,9 +7,6 @@ molecule:
     - venv
 
 vagrant:
-  raw_config_args:
-    - "ssh.insert_key = false"
-
   platforms:
     - name: trusty64
       box: ubuntu/trusty64
