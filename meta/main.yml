@@ -15,7 +15,7 @@ galaxy_info:
     - trusty
   - name: EL
     versions:
-    - all
+    - 7
   categories:
   - system
 dependencies: []
