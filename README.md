@@ -15,7 +15,7 @@ Ansible 1.9 or 2.0
 
 Role Variables
 --------------
-
+In order to accommodate a variety of different OSes, ansible-etcd uses a set of OS-family specific variable files located in /var.  These files are included selectively when you run the default playbook.  As a result, if you would like to deploy to multiple different OS families, you need to call the playbook multiple times, as the playbook includes variables only for the first detected OS.
 
 Dependencies
 ------------
@@ -24,7 +24,11 @@ There are no dependencies of ansible-etcd.  If you are deploying to CoreOS, howe
 Example Playbook
 ----------------
 
-    - hosts: etcd
+    - hosts: redhat-hosts
+      roles:
+        - retr0h.etcd
+
+    - hosts: debian-hosts
       roles:
         - retr0h.etcd
 

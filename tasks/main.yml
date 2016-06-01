@@ -4,20 +4,20 @@
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_os_family }}.yml"
-  when: etcd_config_only = false
+  when: not etcd_config_only
 
 - name: Download etcd
   get_url: url={{ etcd_download_url }}
            dest={{ etcd_download_dir }}/{{ etcd_download_filename }}
            sha256sum={{ etcd_checksum }}
-  when: etcd_config_only = false
+  when: not etcd_config_only
 
 - name: Unarchive etcd
   unarchive: copy=no
              src={{ etcd_download_dir }}/{{ etcd_download_filename }}
              dest={{ etcd_download_dir }}
              creates="{{ etcd_download_dir }}/{{ etcd_release }}/etcd"
-  when: etcd_config_only = false
+  when: not etcd_config_only
 
 - name: Copy binaries from archive into etcd dir
   command: rsync -auv --out-format='<<CHANGED>>%i %n%L' {{ etcd_download_dir }}/{{ etcd_release }}/{{ item }} {{ etcd_dir }}
@@ -32,7 +32,7 @@
   template: src=etc/init/etcd.conf.j2
             dest=/etc/init/etcd.conf
             mode=0644
-  when: etcd_daemon = "init"
+  when: etcd_daemon == "init"
   notify:
     - Restart etcd
 
@@ -40,6 +40,6 @@
   template: src=etc/systemd/system/etcd.j2
             dest=/etc/systemd/system/etcd.service
             mode=0644
-  when: etcd_daemon = "init"
+  when: etcd_daemon == "systemctl"
   notify:
     - Restart etcd
