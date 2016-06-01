@@ -54,6 +54,10 @@ ExecStart={{ etcd_cmd }} \
 						-name {{ inventory_hostname }}
 
 Restart=always
+RestartSec=10s
+LimitNOFILE=40000
+TimeoutStartSec=0
+
 
 [Install]
 WantedBy=multi-user.target
