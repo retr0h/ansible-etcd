@@ -1,0 +1,3 @@
+---
+  etcd_config_only: false
+  etcd_daemon: "systemctl"

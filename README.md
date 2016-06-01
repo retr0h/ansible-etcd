@@ -16,12 +16,10 @@ Ansible 1.9 or 2.0
 Role Variables
 --------------
 
-See defaults/main.yml
 
 Dependencies
 ------------
-
-None
+There are no dependencies of ansible-etcd.  If you are deploying to CoreOS, however, it is assumed that you have already bootstapped python per [coreos-bootstrap](https://github.com/defunctzombie/ansible-coreos-bootstrap).
 
 Example Playbook
 ----------------
