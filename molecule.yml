@@ -10,6 +10,8 @@ vagrant:
   platforms:
     - name: trusty64
       box: ubuntu/trusty64
+    - name: centos7
+      box: centos/7
 
   providers:
     - name: virtualbox

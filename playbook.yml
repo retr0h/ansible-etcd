@@ -8,3 +8,6 @@
       etcd_interface: eth1
   tasks:
     - apt: name=curl
+      when: ansible_os_family == "Debian"
+    - yum: name=curl
+      when: ansible_os_family == "RedHat"
