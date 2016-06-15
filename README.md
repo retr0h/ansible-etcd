@@ -11,15 +11,25 @@ Role ready status
 Requirements
 ------------
 
-Ansible 1.9 or 2.0
+* Ansible 2.1
+* Rsync
+* SSL libraries
+* IProute2
 
 Role Variables
 --------------
-In order to accommodate a variety of different OSes, ansible-etcd uses a set of OS-family specific variable files located in /var.  These files are included selectively when you run the default playbook.  As a result, if you would like to deploy to multiple different OS families, you need to call the playbook multiple times, as the playbook includes variables only for the first detected OS.
+
+In order to accommodate a variety of different OSes, ansible-etcd uses a set of OS-family
+specific variable files located in /var.  These files are included selectively when you run
+the default playbook.  As a result, if you would like to deploy to multiple different OS families,
+you need to call the playbook multiple times, as the playbook includes variables only for the
+first detected OS.
 
 Dependencies
 ------------
-There are no dependencies of ansible-etcd.  If you are deploying to CoreOS, however, it is assumed that you have already bootstapped python per [coreos-bootstrap](https://github.com/defunctzombie/ansible-coreos-bootstrap).
+
+There are no dependencies of ansible-etcd.  If you are deploying to CoreOS, however, it is assumed
+that you have already bootstapped python per [coreos-bootstrap](https://github.com/defunctzombie/ansible-coreos-bootstrap).
 
 Example Playbook
 ----------------
