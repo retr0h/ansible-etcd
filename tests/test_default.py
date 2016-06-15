@@ -10,7 +10,7 @@ def test_etcd_installed(File, f):
 
 
 def test_cluster_configured(Interface, Command):
-    address = Interface('eth1').addresses[0]
+    address = Interface('eth0').addresses[0]
     cmd = ('curl -qs '
            'http://{0}:2379/v2/machines | '
            'grep -o 2379 | '

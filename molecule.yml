@@ -1,41 +1,28 @@
 ---
 molecule:
+  raw_env_vars:
+    ANSIBLE_LIBRARY: ../library
+
   ignore_paths:
     - .git
     - .vagrant
     - .molecule
     - venv
 
-vagrant:
-  platforms:
-    - name: trusty64
-      box: ubuntu/trusty64
-    - name: centos7
-      box: centos/7
-
-  providers:
-    - name: virtualbox
-      type: virtualbox
-
-  instances:
+docker:
+  containers:
     - name: etcd-01
       ansible_groups:
         - etcd
-      interfaces:
-        - network_name: private_network
-          type: dhcp
-          auto_config: true
+      image: retr0h/centos7-systemd-ansible
+      image_version: latest
     - name: etcd-02
       ansible_groups:
         - etcd
-      interfaces:
-        - network_name: private_network
-          type: dhcp
-          auto_config: true
+      image: retr0h/centos7-systemd-ansible
+      image_version: latest
     - name: etcd-03
       ansible_groups:
         - etcd
-      interfaces:
-        - network_name: private_network
-          type: dhcp
-          auto_config: true
+      image: retr0h/centos7-systemd-ansible
+      image_version: latest

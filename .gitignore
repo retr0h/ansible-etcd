@@ -4,3 +4,4 @@
 tests/.cache/
 tests/__pycache__/
 venv/
+playbook.retry
