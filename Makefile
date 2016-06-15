@@ -2,7 +2,7 @@
 venv: venv/bin/activate
 
 venv/bin/activate: requirements.txt
-	test -d venv || virtualenv venv
+	test -d venv || virtualenv -p `which python` venv
 	. venv/bin/activate; pip install -r requirements.txt
 	touch venv/bin/activate
 
