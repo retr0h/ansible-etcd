@@ -1,6 +1,12 @@
+# {{ ansible_managed }}
+
 [Unit]
 Description=etcd Daemon
 After=network.target
+
+[Service]
+Type=notify
+User={{ etcd_user }}
 
 {% if etcd_discovery == none and etcd_discovery_srv == none -%}
 {% macro initial_cluster() -%}
@@ -13,12 +19,6 @@ After=network.target
 {% endfor -%}
 {% endmacro -%}
 {% endif %}
-
-
-[Service]
-Type=notify
-User={{ etcd_user }}
-
 
 ExecStart={{ etcd_cmd }} \
 						{% if etcd_discovery != none -%}

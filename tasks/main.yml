@@ -37,7 +37,7 @@
     - Restart etcd
 
 - name: Add etcd systemd service
-  template: src=etc/systemd/system/etcd.j2
+  template: src=etc/systemd/system/etcd.service.j2
             dest=/etc/systemd/system/etcd.service
             mode=0644
   when: etcd_daemon == "systemctl"
