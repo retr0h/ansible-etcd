@@ -31,3 +31,13 @@ docker:
         - etcd
       image: solita/ubuntu-systemd
       image_version: latest
+    - name: etcd-05
+      ansible_groups:
+        - etcd
+      image: ubuntu-upstart
+      image_version: latest
+    - name: etcd-06
+      ansible_groups:
+        - etcd
+      image: ubuntu-upstart
+      image_version: latest
