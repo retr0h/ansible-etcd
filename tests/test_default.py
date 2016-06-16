@@ -16,4 +16,4 @@ def test_cluster_configured(Interface, Command):
            'grep -o 2379 | '
            'wc -l').format(address)
 
-    assert Command.check_output(cmd) == '3'
+    assert Command.check_output(cmd) == '4'

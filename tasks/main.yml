@@ -1,5 +1,4 @@
 ---
-
 - name: Include Configuration
   include_vars: "{{ item }}"
   with_first_found:
@@ -32,7 +31,7 @@
   template: src=etc/init/etcd.conf.j2
             dest=/etc/init/etcd.conf
             mode=0644
-  when: etcd_daemon == "init"
+  when: ansible_service_mgr == "upstart"
   notify:
     - Restart etcd
 
@@ -40,6 +39,6 @@
   template: src=etc/systemd/system/etcd.service.j2
             dest=/etc/systemd/system/etcd.service
             mode=0644
-  when: etcd_daemon == "systemctl"
+  when: ansible_service_mgr == "systemd"
   notify:
     - Restart etcd

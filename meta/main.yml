@@ -13,6 +13,7 @@ galaxy_info:
     - raring
     - saucy
     - trusty
+    - xenial
   - name: EL
     versions:
     - 7

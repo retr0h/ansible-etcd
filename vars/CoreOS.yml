@@ -3,7 +3,6 @@
 # include these variables on CoreOS hosts
 
 etcd_config_only: true
-etcd_daemon: "systemctl"
 
 etcd_user: etcd
 etcd_interface: "eth1"

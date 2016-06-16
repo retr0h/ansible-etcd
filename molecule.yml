@@ -24,5 +24,10 @@ docker:
     - name: etcd-03
       ansible_groups:
         - etcd
-      image: retr0h/centos7-systemd-ansible
+      image: solita/ubuntu-systemd
+      image_version: latest
+    - name: etcd-04
+      ansible_groups:
+        - etcd
+      image: solita/ubuntu-systemd
       image_version: latest
