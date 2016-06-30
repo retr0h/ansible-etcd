@@ -1,6 +1,6 @@
 ---
 # Installation Variables
-etcd_config_only: false
+etcd_config_only: False
 etcd_daemon: "systemctl"
 
 # Download Variables
@@ -40,12 +40,12 @@ etcd_listen_client_urls: "{{ etcd_client_url_scheme }}://{{ hostvars[inventory_h
 
 etcd_client_cert_file: ~
 etcd_client_key_file: ~
-etcd_client_cert_auth: false
+etcd_client_cert_auth: False
 etcd_client_trusted_ca_file: ~
 
 etcd_peer_cert_file: ~
 etcd_peer_key_file: ~
-etcd_peer_client_cert_auth: false
+etcd_peer_client_cert_auth: False
 etcd_peer_trusted_ca_file: ~
 
 etcd_discovery: ~

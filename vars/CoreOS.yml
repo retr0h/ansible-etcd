@@ -1,8 +1,5 @@
 ---
-# Ansible-etcd for CoreOS
-# include these variables on CoreOS hosts
-
-etcd_config_only: true
+etcd_config_only: True
 
 etcd_user: etcd
 etcd_interface: "eth1"

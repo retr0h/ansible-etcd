@@ -5,8 +5,10 @@
     - "{{ ansible_os_family }}.yml"
   when: not etcd_config_only|bool
 
-- name: Install the latest version of rsync
-  package: name=rsync state=latest
+- name: Install system dependencies for synchronize
+  package: name={{ item }}
+  with_flattened: "{{ etcd_install_dependencies }}"
+  when: not etcd_config_only|bool
 
 - name: Download etcd
   get_url: url={{ etcd_download_url }}
@@ -22,9 +24,10 @@
   when: not etcd_config_only|bool
 
 - name: Copy binaries from archive into etcd dir
-  command: rsync -auv --out-format='<<CHANGED>>%i %n%L' {{ etcd_download_dir }}/{{ etcd_release }}/{{ item }} {{ etcd_dir }}
-  register: etcd_rsync_out
-  changed_when: etcd_rsync_out.stdout | search("CHANGED")
+  synchronize: src="{{ etcd_download_dir }}/{{ etcd_release }}/{{ item }}"
+               dest="{{ etcd_dir }}"
+               archive=True
+  delegate_to: "{{ inventory_hostname }}"
   with_items:
     - etcd
     - etcdctl
