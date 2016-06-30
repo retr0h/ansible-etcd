@@ -5,6 +5,9 @@
     - "{{ ansible_os_family }}.yml"
   when: not etcd_config_only|bool
 
+- name: Install the latest version of rsync
+  package: name=rsync state=latest
+
 - name: Download etcd
   get_url: url={{ etcd_download_url }}
            dest={{ etcd_download_dir }}/{{ etcd_download_filename }}
