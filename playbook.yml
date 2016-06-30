@@ -3,18 +3,10 @@
   pre_tasks:
     - apt: update_cache=yes cache_valid_time=3600
       when: ansible_os_family == "Debian"
-    - apt: name={{ item }}
+    - package: name={{ item }}
       with_items:
         - curl
-        - rsync
         - iproute
-      when: ansible_os_family == "Debian"
-    - yum: name={{ item }}
-      with_items:
-        - curl
-        - rsync
-        - iproute
-      when: ansible_os_family == "RedHat"
     - docker_facts:
   roles:
     - role: ansible-etcd
