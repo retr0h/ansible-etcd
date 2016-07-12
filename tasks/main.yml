@@ -7,7 +7,7 @@
 
 - name: Install system dependencies for synchronize
   package: name={{ item }}
-  with_flattened: "{{ etcd_install_dependencies }}"
+  with_flattened: "{{ etcd_install_dependencies|default([]) }}"
   when: not etcd_config_only|bool
 
 - name: Download etcd
@@ -47,4 +47,5 @@
             mode=0644
   when: ansible_service_mgr == "systemd"
   notify:
+    - Reload systemd
     - Restart etcd
