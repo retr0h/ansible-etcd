@@ -3,9 +3,6 @@ driver:
   name: docker
 
 molecule:
-  raw_env_vars:
-    ANSIBLE_LIBRARY: ../library
-
   ignore_paths:
     - .git
     - .vagrant
