@@ -48,9 +48,7 @@ Testing
 
 Tests are performed by [Molecule](http://molecule.readthedocs.org/en/latest/).
 
-    $ make
-    $ source venv/bin/activate
-    $ molecule test
+    $ tox
 
 License
 -------
