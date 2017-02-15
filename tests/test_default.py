@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from testinfra.utils.ansible_runner import AnsibleRunner
 
@@ -14,9 +16,9 @@ def test_etcd_installed(File, f):
 
 def test_cluster_configured(Interface, Command):
     address = Interface('eth0').addresses[0]
-    cmd = ('curl -qs '
-           'http://{0}:2379/v2/machines | '
-           'grep -o 2379 | '
-           'wc -l').format(address)
+    endpoint = 'http://{}:2379'.format(address)
+    cmd = 'etcdctl --endpoints {} cluster-health'.format(endpoint)
+    out = Command.check_output(cmd)
 
-    assert Command.check_output(cmd) == '6'
+    assert 6 == len(re.findall(r'member [\d\w]+ is healthy', out))
+    assert 'cluster is healthy' in out
