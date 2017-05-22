@@ -1,2 +1,2 @@
-docker
-molecule
+docker-py
+molecule>=2.0.0.0.rc2
