@@ -1,2 +1,2 @@
 docker-py
-molecule>=2.0.0.0.rc2
+-e git+https://github.com/metacloud/molecule.git@v2#egg=molecule
