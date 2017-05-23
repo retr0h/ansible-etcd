@@ -12,22 +12,30 @@ platforms:
     command: /usr/sbin/init
     groups:
       - etcd
+    dockerfile: Dockerfile.centos
   - name: etcd-02
     image: molecule_local/retr0h/centos7-systemd-ansible:7
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
+    dockerfile: Dockerfile.centos
   - name: etcd-03
     image: molecule_local/retr0h/centos7-systemd-ansible:7
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
+    dockerfile: Dockerfile.centos
 verifier:
   name: testinfra
+  directory: ../resources/tests/
 provisioner:
   name: ansible
+  playbooks:
+    setup: ../resources/playbooks/create.yml
+    teardown: ../resources/playbooks/destroy.yml
+    converge: ../resources/playbooks/playbook.yml
 scenario:
   name: centos
 verifier:

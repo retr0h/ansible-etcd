@@ -9,8 +9,9 @@
   tasks:
     - name: Build an Ansible compatible image
       docker_image:
-        path: "{{ molecule_scenario_directory }}"
+        path: .
         name: "{{ item.image }}"
+        dockerfile: "{{ item.dockerfile }}"
       with_items: "{{ molecule_yml.platforms }}"
 
     - name: Create molecule instance(s)

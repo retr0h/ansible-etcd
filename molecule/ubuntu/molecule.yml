@@ -12,22 +12,32 @@ platforms:
     command: /sbin/init
     groups:
       - etcd
+    dockerfile: Dockerfile.ubuntu
   - name: etcd-02
     image: molecule_local/solita/ubuntu-systemd:latest
     privileged: True
     command: /sbin/init
     groups:
       - etcd
+    dockerfile: Dockerfile.ubuntu
   - name: etcd-03
     image: molecule_local/solita/ubuntu-systemd:latest
     privileged: True
     command: /sbin/init
     groups:
       - etcd
+    dockerfile: Dockerfile.ubuntu
 verifier:
   name: testinfra
+  directory: ../resources/tests/
 provisioner:
   name: ansible
+  playbooks:
+    setup: ../resources/playbooks/create.yml
+    teardown: ../resources/playbooks/destroy.yml
+    converge: ../resources/playbooks/playbook.yml
+  env:
+    DOCKERFILE_IMAGE: solita/ubuntu-systemd
 scenario:
   name: ubuntu
 verifier:
