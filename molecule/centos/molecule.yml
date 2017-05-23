@@ -7,22 +7,19 @@ lint:
   name: ansible-lint
 platforms:
   - name: etcd-01
-    image: retr0h/centos7-systemd-ansible
-    image_version: latest
+    image: molecule_local/retr0h/centos7-systemd-ansible:7
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
   - name: etcd-02
-    image: retr0h/centos7-systemd-ansible
-    image_version: latest
+    image: molecule_local/retr0h/centos7-systemd-ansible:7
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
   - name: etcd-03
-    image: retr0h/centos7-systemd-ansible
-    image_version: latest
+    image: molecule_local/retr0h/centos7-systemd-ansible:7
     privileged: True
     command: /usr/sbin/init
     groups:
@@ -32,6 +29,6 @@ verifier:
 provisioner:
   name: ansible
 scenario:
-  name: default
+  name: centos
 verifier:
   name: testinfra
