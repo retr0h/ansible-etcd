@@ -1,0 +1,34 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: ansible-lint
+platforms:
+  - name: etcd-01
+    image: molecule_local/ubuntu-upstart:latest
+    privileged: True
+    command: /sbin/init
+    groups:
+      - etcd
+  - name: etcd-02
+    image: molecule_local/ubuntu-upstart:latest
+    privileged: True
+    command: /sbin/init
+    groups:
+      - etcd
+  - name: etcd-03
+    image: molecule_local/ubuntu-upstart:latest
+    privileged: True
+    command: /sbin/init
+    groups:
+      - etcd
+verifier:
+  name: testinfra
+provisioner:
+  name: ansible
+scenario:
+  name: ubuntu-upstart
+verifier:
+  name: testinfra
