@@ -27,14 +27,14 @@ platforms:
     groups:
       - etcd
     dockerfile: Dockerfile.ubuntu-upstart
-    lint:
-      name: ansible-lint
 provisioner:
   name: ansible
   playbooks:
     setup: ../resources/playbooks/create.yml
     teardown: ../resources/playbooks/destroy.yml
     converge: ../resources/playbooks/playbook.yml
+  lint:
+    name: ansible-lint
 scenario:
   name: ubuntu-upstart
 verifier:
