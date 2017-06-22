@@ -6,17 +6,17 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.1
   platforms:
-  - name: Ubuntu
-    versions:
-    - all
-    - quantal
-    - raring
-    - saucy
-    - trusty
-    - xenial
-  - name: EL
-    versions:
-    - 7
+    - name: Ubuntu
+      versions:
+        - all
+        - quantal
+        - raring
+        - saucy
+        - trusty
+        - xenial
+    - name: EL
+      versions:
+        - 7
   categories:
-  - system
+    - system
 dependencies: []

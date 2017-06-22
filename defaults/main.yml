@@ -17,7 +17,7 @@ etcd_download_filename: "{{ etcd_release }}.tar.gz"
 etcd_dir: /usr/local/sbin
 etcd_data_dir: /var/cache/etcd/state
 etcd_cmd: "{{ etcd_dir }}/etcd"
-etcd_user: root # The user only applies to EL distros
+etcd_user: root  # The user only applies to EL distros
 
 # Networking Variables
 etcd_interface: lo
@@ -34,7 +34,7 @@ etcd_initial_cluster_state: new
 etcd_initial_cluster_token: etcd-cluster-1
 
 etcd_initial_advertise_peer_urls: "{{ etcd_peer_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_peer_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
-etcd_listen_peer_urls:  "{{ etcd_peer_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_peer_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
+etcd_listen_peer_urls: "{{ etcd_peer_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_peer_interface]['ipv4']['address'] }}:{{ etcd_peer_port }}"
 etcd_advertise_client_urls: "{{ etcd_client_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_client_interface]['ipv4']['address'] }}:{{ etcd_client_port }}"
 etcd_listen_client_urls: "{{ etcd_client_url_scheme }}://{{ hostvars[inventory_hostname]['ansible_' + etcd_client_interface]['ipv4']['address'] }}:{{ etcd_client_port }}"
 
