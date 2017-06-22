@@ -1,2 +1,2 @@
 docker-py
--e git+https://github.com/metacloud/molecule.git@v2#egg=molecule
+-e git+https://github.com/metacloud/molecule.git#egg=molecule

@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 lint:
-  name: ansible-lint
+  name: yamllint
 platforms:
   - name: etcd-01
     image: molecule_local/solita/ubuntu-systemd:latest
@@ -27,6 +27,8 @@ platforms:
     groups:
       - etcd
     dockerfile: Dockerfile.ubuntu
+    lint:
+      name: ansible-lint
 provisioner:
   name: ansible
   playbooks:
@@ -38,3 +40,5 @@ scenario:
 verifier:
   name: testinfra
   directory: ../resources/tests/
+  lint:
+    name: flake8
