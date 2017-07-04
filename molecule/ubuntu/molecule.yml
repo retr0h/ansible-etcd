@@ -7,26 +7,23 @@ lint:
   name: yamllint
 platforms:
   - name: etcd-01
-    image: molecule_local/solita/ubuntu-systemd:latest
+    image: solita/ubuntu-systemd:latest
     privileged: True
     command: /sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.ubuntu
   - name: etcd-02
-    image: molecule_local/solita/ubuntu-systemd:latest
+    image: solita/ubuntu-systemd:latest
     privileged: True
     command: /sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.ubuntu
   - name: etcd-03
-    image: molecule_local/solita/ubuntu-systemd:latest
+    image: solita/ubuntu-systemd:latest
     privileged: True
     command: /sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.ubuntu
 provisioner:
   name: ansible
   playbooks:

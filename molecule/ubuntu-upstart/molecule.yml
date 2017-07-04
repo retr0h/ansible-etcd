@@ -7,26 +7,23 @@ lint:
   name: yamllint
 platforms:
   - name: etcd-01
-    image: molecule_local/ubuntu-upstart:latest
+    image: ubuntu-upstart:latest
     privileged: True
-    command: /usr/sbin/init
+    command: /sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.centos
   - name: etcd-02
-    image: molecule_local/ubuntu-upstart:latest
+    image: ubuntu-upstart:latest
     privileged: True
-    command: /usr/sbin/init
+    command: /sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.centos
   - name: etcd-03
-    image: molecule_local/ubuntu-upstart:latest
+    image: ubuntu-upstart:latest
     privileged: True
-    command: /usr/sbin/init
+    command: /sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.ubuntu-upstart
 provisioner:
   name: ansible
   playbooks:

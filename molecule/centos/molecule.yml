@@ -7,26 +7,23 @@ lint:
   name: yamllint
 platforms:
   - name: etcd-01
-    image: molecule_local/retr0h/centos7-systemd-ansible:7
+    image: retr0h/centos7-systemd-ansible:latest
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.centos
   - name: etcd-02
-    image: molecule_local/retr0h/centos7-systemd-ansible:7
+    image: retr0h/centos7-systemd-ansible:latest
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.centos
   - name: etcd-03
-    image: molecule_local/retr0h/centos7-systemd-ansible:7
+    image: retr0h/centos7-systemd-ansible:latest
     privileged: True
     command: /usr/sbin/init
     groups:
       - etcd
-    dockerfile: Dockerfile.centos
 provisioner:
   name: ansible
   playbooks:
