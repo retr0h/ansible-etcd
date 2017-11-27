@@ -1,5 +1,5 @@
 ---
-etcd_config_only: False
+etcd_config_only: false
 etcd_install_dependencies:
   - rsync
   - openssh-server

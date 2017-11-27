@@ -1,5 +1,5 @@
 ---
-etcd_config_only: True
+etcd_config_only: true
 
 etcd_user: etcd
 etcd_interface: "eth1"
