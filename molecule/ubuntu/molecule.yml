@@ -36,8 +36,9 @@ platforms:
 provisioner:
   name: ansible
   playbooks:
-    setup: ../resources/playbooks/create.yml
-    teardown: ../resources/playbooks/destroy.yml
+    prepare: ../resources/playbooks/prepare.yml
+    create: ../resources/playbooks/create.yml
+    destroy: ../resources/playbooks/destroy.yml
     converge: ../resources/playbooks/playbook.yml
   lint:
     name: ansible-lint
